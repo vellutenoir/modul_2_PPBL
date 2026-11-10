@@ -1,0 +1,7 @@
+import 'package:flutter/material.dart';
+class ReportPage extends StatefulWidget { const ReportPage({super.key}); @override State<ReportPage> createState() => _ReportPageState(); }
+class _ReportPageState extends State<ReportPage> {
+ final controller = TextEditingController(); String jenis = 'Sampah/limbah';
+ @override void dispose(){controller.dispose();super.dispose();}
+ @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('Buat Laporan')), body: ListView(padding: const EdgeInsets.all(18), children: [const Text('Laporkan kondisi lingkungan laut', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)), const SizedBox(height: 16), DropdownButtonFormField<String>(value: jenis, decoration: const InputDecoration(labelText: 'Jenis laporan', border: OutlineInputBorder()), items: const [DropdownMenuItem(value:'Sampah/limbah',child:Text('Sampah/limbah')),DropdownMenuItem(value:'Ikan mati',child:Text('Ikan mati')),DropdownMenuItem(value:'Air tercemar',child:Text('Air tercemar'))], onChanged:(v)=>setState(()=>jenis=v ?? jenis)), const SizedBox(height: 14), TextField(controller: controller, maxLines: 4, decoration: const InputDecoration(labelText: 'Deskripsi dan lokasi', hintText: 'Tuliskan keterangan lokasi laporan', border: OutlineInputBorder())), const SizedBox(height: 18), FilledButton.icon(onPressed: ()=>Navigator.pop(context,'Laporan "$jenis" berhasil disimpan sebagai contoh.'), icon: const Icon(Icons.send), label: const Text('Kirim Laporan'))]));
+}
